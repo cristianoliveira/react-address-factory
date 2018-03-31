@@ -83,31 +83,20 @@ class AddressForm extends Component {
     );
 
     return (
-      <form action="#" method="post" onSubmit={this.handleSubmit.bind(this)}>
-        <AddressLineInput
-          name="address_line"
-          onChange={this.handleChange.bind(this)}
-        />
-        <AddressLineInput
-          name="address_line2"
-          onChange={this.handleChange.bind(this)}
-          optional
-        />
-        <CountrySelector
-          name="country"
-          countries={countries}
-          onChange={this.handleChange.bind(this)}
-        />
-        <PostCodeInput
-          name="post_code"
-          onChange={this.handleChange.bind(this)}
-        />
-        <CityInput name="city" onChange={this.handleChange.bind(this)} />
+      <form
+        action="#"
+        method="post"
+        onSubmit={this.handleSubmit.bind(this)}
+        onChange={this.handleChange.bind(this)}>
+        <AddressLineInput name="address_line" />
+        <AddressLineInput name="address_line2" optional />
+        <CountrySelector name="country" countries={countries} />
+        <PostCodeInput name="post_code" />
+        <CityInput name="city" />
         <RegionSelector
           name="region"
           visible={regions.length > 0}
           regions={regions}
-          onChange={this.handleChange.bind(this)}
         />
         <button>Submit</button>
         <h4>preview:</h4>
