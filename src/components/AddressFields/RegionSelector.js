@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CountrySelector({name, countries, onChange, ...props}) {
+function RegionSelector({name, regions, visible, onChange, ...props}) {
+  if (!visible) {
+    return null;
+  }
+
   return (
     <div>
-      <label htmlFor={name}>Country</label>
+      <label htmlFor={name}>Region</label>
       <select id={name} name={name} onChange={onChange}>
-        {countries.map(({code, name}) => (
+        <option value="">Select Region</option>
+        {regions.map(({code, name}) => (
           <option value={code} key={code}>
             {name}
           </option>
@@ -16,14 +21,16 @@ function CountrySelector({name, countries, onChange, ...props}) {
   );
 }
 
-CountrySelector.defaultProps = {
-  countries: [],
+RegionSelector.defaultProps = {
+  visible: true,
+  regions: [],
   onChange: console.log,
 };
 
-CountrySelector.propTypes = {
+RegionSelector.propTypes = {
+  visible: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  countries: PropTypes.arrayOf(
+  regions: PropTypes.arrayOf(
     PropTypes.shape({
       code: PropTypes.string,
       name: PropTypes.string,
@@ -32,4 +39,4 @@ CountrySelector.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default CountrySelector;
+export default RegionSelector;

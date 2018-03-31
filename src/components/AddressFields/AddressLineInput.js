@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function AddressLineInput({name, optional, onChange, ...props}) {
   return (
     <div>
-      <label htmlFor="address_line">Address {optional && '(Optional)'}</label>
+      <label htmlFor="address_line">Address {optional && '(optional)'}</label>
       <input type="text" name={name} id={name} onChange={onChange} />
     </div>
   );

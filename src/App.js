@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {isEmpty} from 'lodash';
 import logo from './logo.svg';
-import AddressForm from './components/AddressForm';
+import CountryAddressForm from './components/CountryAddressForm';
+import addressFieldsFactory from './components/AddressFieldsFactory';
 import './App.css';
 
 class App extends Component {
@@ -16,8 +17,10 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">React address factory</h1>
         </header>
-        <div className="App-intro">
-          <AddressForm onSubmit={this.onSubmitForm.bind(this)} />
+        <div className="App-container">
+          <CountryAddressForm onSubmit={this.onSubmitForm.bind(this)}>
+            {addressFieldsFactory}
+          </CountryAddressForm>
         </div>
       </div>
     );

@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import AddressLineInput from './AddressLineInput';
-import CountrySelector from './CountrySelector';
-import PostCodeInput from './PostCodeInput';
-import CityInput from './CityInput';
-import RegionSelector from './RegionSelector';
-
-const COUNTRIES = {
-  DE: 'Germany',
-  IE: 'Ireland',
-  BR: 'Brazil',
-};
+import {
+  AddressLineInput,
+  PostCodeInput,
+  CityInput,
+  RegionSelector,
+} from '../AddressFields';
 
 const COUNTRY_REGIONS = {
   IE: {
@@ -45,14 +40,6 @@ const COUNTRY_REGIONS = {
 };
 
 class AddressForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      country: 'DE',
-    };
-  }
-
   handleSubmit(event) {
     event.preventDefault();
 
@@ -70,15 +57,10 @@ class AddressForm extends Component {
   render() {
     const {onSubmit} = this.props;
 
-    const countries = Object.keys(COUNTRIES).map(code => ({
-      code,
-      name: COUNTRIES[code],
-    }));
-
-    const regions = Object.keys(COUNTRY_REGIONS[this.state.country] || []).map(
+    const regions = Object.keys(COUNTRY_REGIONS[this.props.country] || []).map(
       code => ({
         code,
-        name: COUNTRY_REGIONS[this.state.country][code],
+        name: COUNTRY_REGIONS[this.props.country][code],
       }),
     );
 
@@ -90,7 +72,6 @@ class AddressForm extends Component {
         onChange={this.handleChange.bind(this)}>
         <AddressLineInput name="address_line" />
         <AddressLineInput name="address_line2" optional />
-        <CountrySelector name="country" countries={countries} />
         <PostCodeInput name="post_code" />
         <CityInput name="city" />
         <RegionSelector
