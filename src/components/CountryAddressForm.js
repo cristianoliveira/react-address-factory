@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
+import './CountryAddressForm.css';
+
 const COUNTRIES = {
   DE: 'Germany',
   IE: 'Ireland',
@@ -54,6 +56,7 @@ class CountryAddressForm extends PureComponent {
 
     return (
       <form
+        className="country-form"
         action="#"
         method="post"
         onSubmit={this.handleSubmit.bind(this)}
@@ -74,8 +77,10 @@ class CountryAddressForm extends PureComponent {
         {fields(this.state.country)}
 
         <button>Submit</button>
-        <h4>State preview:</h4>
-        <pre>{JSON.stringify(this.state)}</pre>
+        <div className="country-form-state">
+          <h4>State preview:</h4>
+          <pre>{JSON.stringify(this.state)}</pre>
+        </div>
       </form>
     );
   }

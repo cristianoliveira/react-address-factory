@@ -4,7 +4,7 @@ import GeneralAddressFields from './country-fields/GeneralAddressFields';
 import IrishAddressFields from './country-fields/IrishAddressFields';
 import BrazilianAddressFields from './country-fields/BrazilianAddressFields';
 
-const ADDRESSES = {
+const ADDRESS_FIELDS = {
   DE: GeneralAddressFields,
   FR: GeneralAddressFields,
   IE: IrishAddressFields,
@@ -12,5 +12,5 @@ const ADDRESSES = {
 };
 
 export default function fieldsFactory(country, props = {}) {
-  return React.createElement(ADDRESSES[country], {...props, country});
+  return React.createElement(ADDRESS_FIELDS[country], {...props, country});
 }
