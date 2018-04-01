@@ -7,8 +7,7 @@ import './App.css';
 
 class App extends Component {
   onSubmitForm(state) {
-    console.log('state: ', state);
-    return false;
+    window.alert('Your data:' + JSON.stringify(state));
   }
 
   render() {
@@ -19,7 +18,7 @@ class App extends Component {
         </header>
         <div className="App-container">
           <CountryAddressForm onSubmit={this.onSubmitForm.bind(this)}>
-            {addressFieldsFactory}
+            {({country, ...state}) => addressFieldsFactory(country, state)}
           </CountryAddressForm>
         </div>
       </div>

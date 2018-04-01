@@ -1,17 +1,17 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-import {AddressLineInput, PostCodeInput, CityInput} from '../AddressFields';
+import AddressCommonInternational from '../address-fieldset/AddressCommonInternational';
 
-function GermanAddressFields() {
+function GeneralAddressFields(props) {
+  debugger;
   return (
     <Fragment>
-      <AddressLineInput name="address_line" />
-      <AddressLineInput name="address_line2" optional />
-      <PostCodeInput name="post_code" />
-      <CityInput name="city" />
+      <p>This is simple general fieldset for address {props.country}</p>
+      <p>There is nothing special in it :)</p>
+      <AddressCommonInternational {...props} />
     </Fragment>
   );
 }
 
-export default GermanAddressFields;
+export default GeneralAddressFields;

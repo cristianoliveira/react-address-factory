@@ -6,17 +6,24 @@ import './CountryAddressForm.css';
 const COUNTRIES = {
   DE: 'Germany',
   IE: 'Ireland',
+  US: 'USA',
   FR: 'France',
   BR: 'Brazil',
+};
+
+const initialState = {
+  country: 'DE',
+  address_line: '',
+  address_line2: '',
+  city: '',
+  post_code: '',
 };
 
 class CountryAddressForm extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      country: 'DE',
-    };
+    this.state = initialState;
   }
 
   handleSubmit(event) {
@@ -31,13 +38,7 @@ class CountryAddressForm extends PureComponent {
 
     this.setState(prev => {
       if (valueChanged['country']) {
-        // Sorry for this magic but in order to reset the state.
-        const emptyState = Object.keys(prev).reduce(
-          (acc, key) => ({...acc, [key]: undefined}),
-          {},
-        );
-
-        return {...emptyState, ...valueChanged};
+        return {...initialState, ...valueChanged};
       }
 
       return {...prev, ...valueChanged};
@@ -47,7 +48,7 @@ class CountryAddressForm extends PureComponent {
   }
 
   render() {
-    const {name, children: fields} = this.props;
+    const {children: fields} = this.props;
 
     const countries = Object.keys(COUNTRIES).map(code => ({
       code,
@@ -61,12 +62,8 @@ class CountryAddressForm extends PureComponent {
         method="post"
         onSubmit={this.handleSubmit.bind(this)}
         onChange={this.handleChange.bind(this)}>
-        <input type="hidden" name="country" id="country" value="DE" />
         <label htmlFor="country">Country</label>
-        <select
-          id="country"
-          name="country"
-          onChange={this.handleChange.bind(this)}>
+        <select id="country" name="country">
           {countries.map(({code, name}) => (
             <option value={code} key={code}>
               {name}
@@ -74,12 +71,17 @@ class CountryAddressForm extends PureComponent {
           ))}
         </select>
 
-        {fields(this.state.country)}
+        {fields(this.state)}
 
         <button>Submit</button>
         <div className="country-form-state">
           <h4>State preview:</h4>
-          <pre>{JSON.stringify(this.state)}</pre>
+          <pre>
+            {JSON.stringify(
+              this.state,
+              (k, value) => (!!value ? value : undefined),
+            )}
+          </pre>
         </div>
       </form>
     );
@@ -92,7 +94,6 @@ CountryAddressForm.defaultProps = {
 };
 
 CountryAddressForm.propTypes = {
-  name: PropTypes.string.isRequired,
   countries: PropTypes.arrayOf(
     PropTypes.shape({
       code: PropTypes.string,

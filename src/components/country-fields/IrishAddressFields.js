@@ -1,12 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  AddressLineInput,
-  PostCodeInput,
-  CityInput,
-  RegionSelector,
-} from '../AddressFields';
+import AddressWithRegion from '../address-fieldset/AddressWithRegion';
 
 const COUNTRY_REGIONS = {
   5: 'Carlow',
@@ -37,7 +32,7 @@ const COUNTRY_REGIONS = {
   13: 'Wicklow',
 };
 
-function IrishAddressFields() {
+function IrishAddressFields(props) {
   const regions = Object.keys(COUNTRY_REGIONS).map(code => ({
     code,
     name: COUNTRY_REGIONS[code],
@@ -45,13 +40,15 @@ function IrishAddressFields() {
 
   return (
     <Fragment>
-      <AddressLineInput name="address_line" />
-      <AddressLineInput name="address_line2" optional />
-      <PostCodeInput name="post_code" type="text" optional />
-      <CityInput name="city" />
-      <RegionSelector name="region" regions={regions} />
+      <h5>This an address with region</h5>
+      <p>Also it has some special behavior :)</p>
+      <AddressWithRegion {...props} regions={regions} />
+      {props.region && (
+        <p>
+          You selected a region! <br /> This only shows for Ireland. Have a 🍺
+        </p>
+      )}
     </Fragment>
   );
 }
-
 export default IrishAddressFields;

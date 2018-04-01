@@ -13,14 +13,15 @@ function PostCodeInput({name, optional, ...props}) {
 }
 
 PostCodeInput.defaultProps = {
+  name: 'post_code',
   type: 'number',
   onChange: console.log,
   optional: false,
 };
 
 PostCodeInput.propTypes = {
-  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   optional: PropTypes.bool,
   onChange: PropTypes.func,
 };

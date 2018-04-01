@@ -11,6 +11,7 @@ function CityInput({name, onChange}) {
 }
 
 CityInput.defaultProps = {
+  name: 'city',
   onChange: console.log,
 };
 

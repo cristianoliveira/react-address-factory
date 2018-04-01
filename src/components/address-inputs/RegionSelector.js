@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function StateSelector({name, states, visible, onChange, ...props}) {
+function RegionSelector({name, regions, visible, onChange, ...props}) {
   if (!visible) {
     return null;
   }
 
   return (
     <div>
-      <label htmlFor={name}>State</label>
+      <label htmlFor={name}>Region</label>
       <select id={name} name={name} onChange={onChange}>
-        <option value="">Select State</option>
-        {states.map(({code, name}) => (
+        <option value="">Select Region</option>
+        {regions.map(({code, name}) => (
           <option value={code} key={code}>
             {name}
           </option>
@@ -21,16 +21,17 @@ function StateSelector({name, states, visible, onChange, ...props}) {
   );
 }
 
-StateSelector.defaultProps = {
+RegionSelector.defaultProps = {
+  name: 'region',
   visible: true,
-  states: [],
+  regions: [],
   onChange: console.log,
 };
 
-StateSelector.propTypes = {
+RegionSelector.propTypes = {
   visible: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  states: PropTypes.arrayOf(
+  regions: PropTypes.arrayOf(
     PropTypes.shape({
       code: PropTypes.string,
       name: PropTypes.string,
@@ -39,4 +40,4 @@ StateSelector.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default StateSelector;
+export default RegionSelector;
