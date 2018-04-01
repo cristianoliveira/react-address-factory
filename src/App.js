@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {isEmpty} from 'lodash';
 import logo from './logo.svg';
 import CountryAddressForm from './components/CountryAddressForm';
-import addressFieldsFactory from './components/AddressFieldsFactory';
+import {CountryFields} from './components/CountryFieldsFactory';
 import './App.css';
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
         </header>
         <div className="App-container">
           <CountryAddressForm onSubmit={this.onSubmitForm.bind(this)}>
-            {({country, ...state}) => addressFieldsFactory(country, state)}
+            {state => <CountryFields {...state} />}
           </CountryAddressForm>
         </div>
       </div>

@@ -38,7 +38,12 @@ class CountryAddressForm extends PureComponent {
 
     this.setState(prev => {
       if (valueChanged['country']) {
-        return {...initialState, ...valueChanged};
+        const resetState = Object.keys(prev).reduce(
+          (acc, key) => ({...acc, [key]: initialState[key]}),
+          initialState,
+        );
+
+        return {...resetState, ...valueChanged};
       }
 
       return {...prev, ...valueChanged};

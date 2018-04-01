@@ -39,6 +39,9 @@ const COUNTRY_STATES = {
   TO: 'Tocantins',
 };
 
+// This is one example when you can't make it generic. Sometimes the
+// requirements are so weird it's better to have some duplication than
+// contaminating all your components with country specific logic :/
 function BrazilianAddressFields(props) {
   const states = Object.keys(COUNTRY_STATES).map(code => ({
     code,
