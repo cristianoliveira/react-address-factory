@@ -8,7 +8,7 @@ import {
   RegionSelector,
 } from '../address-inputs';
 
-function AddressRegionFieldset(props) {
+function RegionAddress(props) {
   return (
     <Fragment>
       <AddressLineInput value={props.address_line} />
@@ -24,4 +24,4 @@ function AddressRegionFieldset(props) {
   );
 }
 
-export default AddressRegionFieldset;
+export default RegionAddress;

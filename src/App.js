@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {isEmpty} from 'lodash';
 import logo from './logo.svg';
-import CountryAddressForm from './components/CountryAddressForm';
 import {CountryFields} from './components/CountryFieldsFactory';
+// import CountryAddressForm from './components/NaiveCountryAddressForm';
+import CountryAddressForm from './components/CountryAddressForm';
 import './App.css';
 
 class App extends Component {

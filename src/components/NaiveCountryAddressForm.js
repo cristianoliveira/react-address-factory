@@ -1,10 +1,20 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  AddressLineInput,
+  StreetNumberInput,
+  RegionSelector,
+  PostCodeInput,
+  CityInput,
+} from './address-inputs';
 import './CountryAddressForm.css';
+
+const WarningMessage = ({text}) => <div>{text}</div>;
 
 const COUNTRIES = {
   DE: 'Germany',
+  SE: 'Sweden',
   IE: 'Ireland',
   IT: 'Italy',
   SP: 'Spain',
@@ -13,18 +23,33 @@ const COUNTRIES = {
   BR: 'Brazil',
 };
 
-const CountrySelector = ({countries}) => (
-  <div>
-    <label htmlFor="country">Country</label>
-    <select id="country" name="country">
-      {countries.map(({code, name}) => (
-        <option value={code} key={code}>
-          {name}
-        </option>
-      ))}
-    </select>
-  </div>
-);
+const COUNTRY_REGIONS = {
+  IE: {
+    5: 'Carlow',
+    23: 'Cavan',
+    21: 'Clare',
+    12: 'Cork',
+    18: 'Donegal',
+    16: 'Dublin',
+    17: 'Galway',
+  },
+  IT: {
+    15: 'Meath',
+    24: 'Monaghan',
+    2: 'Offaly',
+    20: 'Roscommon',
+    19: 'Sligo',
+    8: 'Tipperary',
+    4: 'Waterford',
+    1: 'West',
+    26: 'Wexford',
+    13: 'Wicklow',
+  },
+  SP: {
+    15: 'foo',
+    24: 'bra',
+  },
+};
 
 const initialState = {
   country: 'DE',
@@ -33,6 +58,12 @@ const initialState = {
   city: '',
   post_code: '',
 };
+
+const formatRegions = regions =>
+  Object.keys(regions).map(code => ({
+    code,
+    name: regions[code],
+  }));
 
 class CountryAddressForm extends PureComponent {
   constructor(props) {
@@ -82,11 +113,48 @@ class CountryAddressForm extends PureComponent {
         method="post"
         onSubmit={this.handleSubmit.bind(this)}
         onChange={this.handleChange.bind(this)}>
-        <CountrySelector countries={countries} />
+        <label htmlFor="country">Country</label>
+        <select id="country" name="country">
+          {countries.map(({code, name}) => (
+            <option value={code} key={code}>
+              {name}
+            </option>
+          ))}
+        </select>
 
-        {fields(this.state)}
+        <AddressLineInput name="address_line" value={this.state.address_line} />
+        {this.state.country === 'BR' && <StreetNumberInput name="street_no" />}
+        {this.state.country === 'BR' &&
+          this.state.address_line && (
+            <WarningMessage text="address_form.fill_form" />
+          )}
+        <AddressLineInput
+          name="address_line2"
+          value={this.state.address_line2}
+          optional
+        />
+
+        {['SE', 'DE'].indexOf(this.state.country) >= 0 ? (
+          <div>
+            <PostCodeInput name="post_code" value={this.state.post_code} />
+            <CityInput name="city" value={this.state.city} />
+          </div>
+        ) : (
+          <div>
+            <CityInput name="city" value={this.state.city} />
+            <PostCodeInput name="post_code" value={this.state.post_code} />
+          </div>
+        )}
+
+        {COUNTRY_REGIONS[this.state.country] && (
+          <RegionSelector
+            name="region"
+            regions={formatRegions(COUNTRY_REGIONS[this.state.country])}
+          />
+        )}
 
         <button>Submit</button>
+
         <div className="country-form-state">
           <h4>State preview:</h4>
           <pre>
