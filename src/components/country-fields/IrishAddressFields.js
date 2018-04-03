@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-import AddressWithRegion from '../address-fieldset/AddressWithRegion';
+import RegionAddress from '../address-fieldset/RegionAddress';
 
 function IrishAddressFields(props) {
   return (
     <Fragment>
       <h5>This an address with region</h5>
       <p>Also it has some special behavior :)</p>
-      <AddressWithRegion {...props} />
+      <RegionAddress {...props} />
       {props.region && (
         <p>
           You selected a region! <br /> This only shows for Ireland. Have a 🍺

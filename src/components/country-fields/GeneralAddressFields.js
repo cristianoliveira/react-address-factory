@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-import AddressCommonInternational from '../address-fieldset/AddressCommonInternational';
+import GeneralInternationalAddress from '../address-fieldset/GeneralInternationalAddress';
 
 // This is most generic implementation it can be used as default
 // when there is no specific country requirement
@@ -10,7 +10,7 @@ function GeneralAddressFields(props) {
     <Fragment>
       <p>This is simple general fieldset for address {props.country}</p>
       <p>There is nothing special in it :)</p>
-      <AddressCommonInternational {...props} />
+      <GeneralInternationalAddress {...props} />
     </Fragment>
   );
 }

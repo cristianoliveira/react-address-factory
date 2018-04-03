@@ -1,13 +1,16 @@
 import React from 'react';
 
-import AddressWithRegion from './address-fieldset/AddressWithRegion';
+import RegionAddress from './address-fieldset/RegionAddress';
+import PostCodePriorAddress from './address-fieldset/PostCodePriorAddress';
 import GeneralAddressFields from './country-fields/GeneralAddressFields';
 import IrishAddressFields from './country-fields/IrishAddressFields';
 import BrazilianAddressFields from './country-fields/BrazilianAddressFields';
 
 const ADDRESS_FIELDS = {
-  SP: AddressWithRegion,
-  IT: AddressWithRegion,
+  DE: PostCodePriorAddress,
+  SE: PostCodePriorAddress,
+  SP: RegionAddress,
+  IT: RegionAddress,
   IE: IrishAddressFields,
   BR: BrazilianAddressFields,
 };

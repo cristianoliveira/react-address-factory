@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import './CountryAddressForm.css';
 
 const COUNTRIES = {
+  US: 'USA',
   DE: 'Germany',
+  SE: 'Sweden',
   IE: 'Ireland',
   IT: 'Italy',
   SP: 'Spain',
-  US: 'USA',
   FR: 'France',
   BR: 'Brazil',
 };
@@ -27,7 +28,7 @@ const CountrySelector = ({countries}) => (
 );
 
 const initialState = {
-  country: 'DE',
+  country: 'US',
   address_line: '',
   address_line2: '',
   city: '',
