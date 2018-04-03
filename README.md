@@ -1,12 +1,8 @@
 # React factory example
 
-This is a simple app to show the Factory Pattern combined with Render Props technique
+This is a [sample app](https://cristianoliveira.github.io/react-address-factory/) to show the Factory Pattern combined with Render Props technique
 
-The blog post talking about this:
-
-[Sample App](https://cristianoliveira.github.io/react-address-factory/)
-
-[Blog post](https://medium.com/@cristian.oliveira/same-same-but-different-6175c0b934d8)
+If you want to know more about this: see [the blog post](https://medium.com/@cristian.oliveira/same-same-but-different-6175c0b934d8)
 
 
 ## Running
