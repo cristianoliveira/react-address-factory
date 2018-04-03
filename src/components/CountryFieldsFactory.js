@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {COUNTRY_REGIONS} from './constants';
+
 import RegionAddress from './address-fieldset/RegionAddress';
 import PostCodePriorAddress from './address-fieldset/PostCodePriorAddress';
 import GeneralAddressFields from './country-fields/GeneralAddressFields';
@@ -13,34 +15,6 @@ const ADDRESS_FIELDS = {
   IT: RegionAddress,
   IE: IrishAddressFields,
   BR: BrazilianAddressFields,
-};
-
-const COUNTRY_REGIONS = {
-  IE: {
-    5: 'Carlow',
-    23: 'Cavan',
-    21: 'Clare',
-    12: 'Cork',
-    18: 'Donegal',
-    16: 'Dublin',
-    17: 'Galway',
-  },
-  IT: {
-    15: 'Meath',
-    24: 'Monaghan',
-    2: 'Offaly',
-    20: 'Roscommon',
-    19: 'Sligo',
-    8: 'Tipperary',
-    4: 'Waterford',
-    1: 'West',
-    26: 'Wexford',
-    13: 'Wicklow',
-  },
-  SP: {
-    15: 'foo',
-    24: 'bra',
-  },
 };
 
 const formatRegions = regions =>
@@ -64,7 +38,7 @@ export function CountryFields({country, ...props}) {
 // </CountryAddressForm>
 export default function fieldsFactory({country, ...props}) {
   const fields = ADDRESS_FIELDS[country] || GeneralAddressFields;
-  const regions = formatRegions(regions);
+  const regions = formatRegions(COUNTRY_REGIONS[country]);
 
   return React.createElement(fields, {...props, country});
 }

@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 
 import './CountryAddressForm.css';
 
-const COUNTRIES = {
-  US: 'USA',
-  DE: 'Germany',
-  SE: 'Sweden',
-  IE: 'Ireland',
-  IT: 'Italy',
-  SP: 'Spain',
-  FR: 'France',
-  BR: 'Brazil',
-};
+import {COUNTRIES} from './constants';
 
 const CountrySelector = ({countries}) => (
   <div>
